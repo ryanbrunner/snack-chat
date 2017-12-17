@@ -1,0 +1,39 @@
+@import 'normalize';
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", sans-serif;
+  color: #333;
+}
+
+.header, .content {
+  padding: 20px;
+}
+
+.post {
+  border: solid 1px #AAA;
+  margin-bottom: 10px;
+  .userName {
+    padding: 5px 10px;
+    font-weight: bold;
+    color: #383eb9;
+  }
+  .body {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+  }
+  .comments {
+    padding: 5px 10px;
+    background-color: #EEE;
+    border-top: solid 1px #AAA;
+  }
+}
+
+h1 {
+  margin: 0;
+}
+
+.header {
+  background-color: #383eb9;
+  color: white;
+}
