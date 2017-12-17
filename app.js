@@ -1,8 +1,21 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var path = require('path');
 var io = require('socket.io')(http);
+
+var path = require('path');
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
+
+app.use((req, res, next) => {
+  req.io = io;
+  next();
+});
 
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
@@ -14,7 +27,7 @@ mongoose.connect('mongodb://localhost/snack');
 var posts = require('./post/controller');
 
 app.get('/api/posts', posts.listPosts);
-app.post('/api/posts', posts.createPost(io));
+app.post('/api/posts', posts.createPost);
 
 // This serves all files placed in the /public
 // directory (where gulp will build all React code)
@@ -24,12 +37,6 @@ app.use(express.static('public'));
 // assets that you want to manually include)
 app.use(express.static('assets'));
 
-io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-});
 
 const layout = require('./layout');
 const Post = require('./post/model');
