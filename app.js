@@ -33,12 +33,17 @@ io.on('connection', function(socket){
 
 const layout = require('./layout');
 const Post = require('./post/model');
+const React = require('react');
+const Snack = require('./compiled/snack').default;
+const ReactDOMServer = require('react-dom/server');
 
 app.get('/', (req, res, next) => {
   const Components = require('./components');
   Post.find().then(posts => {
+    const props = { initialPosts: posts.map(p => p.toObject()) }
+    const body = ReactDOMServer.renderToString(React.createElement(Snack, props));
     res.send(layout({
-      body: Components.snack({ initialPosts: posts.map(p => p.toObject()) })
+      body: body
     }));
   }).catch(next)
 });
