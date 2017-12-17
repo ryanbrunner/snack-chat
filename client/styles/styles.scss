@@ -6,8 +6,25 @@ body {
   color: #333;
 }
 
+.user-name-input {
+  float: left;
+  width: 50%;
+  padding-top: 5px;
+  text-align: right;
+
+  label {
+    margin-right: 5px;
+  }
+}
+
+.header h1 {
+  float: left;
+  width: 50%;
+}
+
 .header, .content {
   padding: 20px;
+  overflow: hidden;
 }
 
 .post {

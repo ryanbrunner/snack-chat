@@ -10,15 +10,16 @@ class Snack extends React.Component {
       user: ''
     }
     this.refresh = this.refresh.bind(this);
+    this.setUser = this.setUser.bind(this);
   }
 
   render() {
     return <div>
       <div className='header'>
-        <h1>snack</h1>
+        <h1>snack chat</h1>
 
         <div className='user-name-input'>
-          Your name:
+          <label>Your name:</label>
           <input type='text' onChange={ this.setUser } value={ this.state.user } />
         </div>
       </div>

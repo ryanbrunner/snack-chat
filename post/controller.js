@@ -1,13 +1,13 @@
 var Post = require('./model');
 
 module.exports = {
-  listPosts: (req, res) => {
-    Post.find().populate('user').exec()
-    .then(records => res.send(records));
+  listPosts: (req, res, next) => {
+    Post.find().exec()
+    .then(records => res.send(records)).catch(next);
   },
 
-  createPost: (req, res) => {
+  createPost: (req, res, next) => {
     const post = new Post(req.body);
-    post.save().then(() => res.send(post));
+    post.save().then(() => res.send(post)).catch(next);
   }
 }
