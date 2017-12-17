@@ -10,15 +10,17 @@ class Snack extends React.Component {
       user: ''
     }
     this.refresh = this.refresh.bind(this);
+    this.setUser = this.setUser.bind(this);
+    this.initIOConnection = this.initIOConnection.bind(this);
   }
 
   render() {
     return <div>
       <div className='header'>
-        <h1>snack</h1>
+        <h1>snack chat</h1>
 
         <div className='user-name-input'>
-          Your name:
+          <label>Your name:</label>
           <input type='text' onChange={ this.setUser } value={ this.state.user } />
         </div>
       </div>
@@ -45,7 +47,7 @@ class Snack extends React.Component {
 
   initIOConnection() {
     this.socket = io();
-    this.socket.on('post_created', function(newPost) {
+    this.socket.on('post-created', (newPost) => {
       if (!this.state.posts.find(post => post._id === newPost._id)) {
         this.setState({ posts: this.state.posts.concat(newPost) })
       }

@@ -15,6 +15,7 @@ module.exports = ({ body }) => {
         <div id='app'>
           ${ body }
         </div>
+        <script src="/socket.io/socket.io.js"></script>
         <script src="/bundle.js"></script>
     </body>
     </html>
