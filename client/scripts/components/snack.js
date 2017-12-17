@@ -43,8 +43,13 @@ class Snack extends React.Component {
     this.setState({ user: e.target.value });
   }
 
+  initIOConnection() {
+    this.socket = io();
+  }
+
   componentDidMount() {
     this.refresh();
+    this.initIOConnection();
   }
 }
 

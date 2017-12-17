@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
+var http = require('http').Server(app);
 var path = require('path');
+var io = require('socket.io')(http);
 
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
@@ -22,8 +24,12 @@ app.use(express.static('public'));
 // assets that you want to manually include)
 app.use(express.static('assets'));
 
-// Include your own logic here (so it has precedence over the wildcard
-// route below)
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
 
 const layout = require('./layout');
 
