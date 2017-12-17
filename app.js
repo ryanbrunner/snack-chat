@@ -38,7 +38,6 @@ const Snack = require('./compiled/snack').default;
 const ReactDOMServer = require('react-dom/server');
 
 app.get('/', (req, res, next) => {
-  const Components = require('./components');
   Post.find().then(posts => {
     const props = { initialPosts: posts.map(p => p.toObject()) }
     const body = ReactDOMServer.renderToString(React.createElement(Snack, props));

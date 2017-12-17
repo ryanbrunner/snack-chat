@@ -1,5 +1,5 @@
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { render } from 'react-dom';
 import Snack from './components/snack';
 
-hydrate(<Snack />, document.getElementById('app'));
+render(<Snack />, document.getElementById('app'));
