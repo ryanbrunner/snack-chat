@@ -3,10 +3,10 @@ import Post from './post';
 import CreatePost from './create_post';
 
 class Snack extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      posts: [],
+      posts: props.initialPosts || [],
       user: ''
     }
     this.refresh = this.refresh.bind(this);

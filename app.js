@@ -32,12 +32,15 @@ io.on('connection', function(socket){
 });
 
 const layout = require('./layout');
+const Post = require('./post/model');
 
 app.get('/', (req, res, next) => {
   const Components = require('./components');
-  res.send(layout({
-    body: Components.snack({})
-  }));
+  Post.find().then(posts => {
+    res.send(layout({
+      body: Components.snack({ initialPosts: posts.map(p => p.toObject()) })
+    }));
+  }).catch(next)
 });
 
 // This route serves your index.html file (which
