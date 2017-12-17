@@ -45,6 +45,11 @@ class Snack extends React.Component {
 
   initIOConnection() {
     this.socket = io();
+    this.socket.on('post_created', function(newPost) {
+      if (!this.state.posts.find(post => post._id === newPost._id)) {
+        this.setState({ posts: this.state.posts.concat(newPost) })
+      }
+    });
   }
 
   componentDidMount() {

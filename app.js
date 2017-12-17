@@ -14,7 +14,7 @@ mongoose.connect('mongodb://localhost/snack');
 var posts = require('./post/controller');
 
 app.get('/api/posts', posts.listPosts);
-app.post('/api/posts', posts.createPost);
+app.post('/api/posts', posts.createPost(io));
 
 // This serves all files placed in the /public
 // directory (where gulp will build all React code)

@@ -6,8 +6,13 @@ module.exports = {
     .then(records => res.send(records));
   },
 
-  createPost: (req, res) => {
-    const post = new Post(req.body);
-    post.save().then(() => res.send(post));
+  createPost: (io) => {
+    return (req, res) => {
+      const post = new Post(req.body);
+      post.save().then(() => {
+        io.emit('post-created', post);
+        res.send(post)
+      });
+    }
   }
 }
