@@ -15,6 +15,7 @@ class Snack extends React.Component {
   }
 
   render() {
+    console.log(this.state.posts);
     return <div>
       <div className='header'>
         <h1>snack chat</h1>
