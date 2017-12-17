@@ -25,6 +25,15 @@ app.use(express.static('assets'));
 // Include your own logic here (so it has precedence over the wildcard
 // route below)
 
+const layout = require('./layout');
+
+app.get('/', (req, res, next) => {
+  const Components = require('./components');
+  res.send(layout({
+    body: Components.snack({})
+  }));
+});
+
 // This route serves your index.html file (which
 // initializes React)
 app.get('*', function(req, res, next) {
